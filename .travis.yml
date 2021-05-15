@@ -19,7 +19,7 @@ after_success:
   - docker build -t docker-nginx ./nginx
   - docker tag docker-nginx hkpark/docker-nginx
 
-  - docker login -u $DOCKER_HUB_ID -p $DOCKER_HUB_PASSWORD
+  - echo "$DOCKER_HUB_PASSWORD" | docker login -u "$DOCKER_HUB_ID" --password-stdin
 
   - docker push hkpark/docker-frontend
   - docker push hkpark/docker-backend
