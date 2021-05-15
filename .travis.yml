@@ -13,8 +13,11 @@ script:
 
 after_success:
   - docker build -t docker-frontend ./frontend
+  - docker tag docker-frontend hkpark/docker-frontend
   - docker build -t docker-backend ./backend
+  - docker tag docker-backend hkpark/docker-backend
   - docker build -t docker-nginx ./nginx
+  - docker tag docker-nginx hkpark/docker-nginx
 
   - echo "$DOCKER_HUB_PASSWORD" | docker login -u "$DOCKER_HUB_ID" --password-stdin
 
