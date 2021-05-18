@@ -1,0 +1,31 @@
+{
+    "AWSEBDockerrunVersion": 2,
+    "containerDefinitions": [
+        {
+            "name": "frontend",
+            "image": "hkpark/docker-frontend",
+            "essentail": false,
+            "memory": 128
+        },
+        {
+            "name": "backend",
+            "image": "hkpark/docker-backend",
+            "essentail": false,
+            "memory": 128
+        },
+        {
+            "name": "nginx",
+            "image": "hkpark/docker-nginx",
+            "hostnaem": "nginx",
+            "essentail": true,
+            "portMappings": [
+                {
+                    "hostPort": 80,
+                    "containerPort": 80
+                }
+            ],
+            "links": ["frontend", "backend"],
+            "memory": 128
+        }
+    ]
+}
